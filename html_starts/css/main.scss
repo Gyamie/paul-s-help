@@ -1,0 +1,311 @@
+body{
+    margin: 1.5em;
+    font-family: 'Poppins', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+//research more on this properties they are for the main image
+.hero-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../imgs/shoe.jpg');
+    background-size: cover;
+    background-position-x: 20%;
+    background-position-y: 20%;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    animation: introLoad 2s forwards;
+}
+
+.logo{
+    color: white;
+    font-weight: bold;
+}
+
+nav{
+       position: fixed;
+       right: 0;
+       top: 0;
+       background: white;
+       height: 100vh;
+       width: 50%;
+       z-index: 999;
+       text-transform: uppercase;
+       transform: translateX(100%);
+       transition: transform .5s ease-in-out;
+
+       ul{
+           list-style-type: none;
+           padding: 0;
+           margin-top: 8em;
+
+           a{
+               color: black;
+               //padding on a link element will not work unless displayed block.
+               padding: .75em 2em;
+               display: block;
+
+               //this means when hovered over the link value the color changes
+               &:hover{
+                   background: rgb(199, 198, 198);
+               }
+           }
+       }
+       .close{
+           float: right;
+           margin: 2em;
+           width: 2.5em;
+       }
+    }
+
+
+// learn more on flexbox this helps to create a division in the header betwn the logo and nav
+
+header {
+    display: flex;
+    justify-content: space-between;
+
+//this helps to style only the svg in the header specifically.
+    svg{
+        width: 2.5em;
+        margin-top: - .6em;
+        cursor: pointer;
+    }
+}
+
+h1{
+    font-size: 3rem;
+    margin-top: 2em;
+    line-height: 3.3rem;
+}
+
+.subhead{
+    font-size: 1.4rem;
+}
+
+section.hero {
+    color: white;
+    height: 90vh;
+    animation: moveDown 1s ease-in-out forwards;// forward is supoosed to make it animate once  
+   opacity: 0;
+
+    .down-arrow{
+        stroke: white;
+        position: absolute;
+        bottom: 2em;
+        width: 1em;
+        animation: moveArrow 1s alternate-reverse infinite;
+        margin-top: 2em;     
+
+        path{
+            fill:white;
+        }
+    }
+
+}
+
+.more-infor{
+    img{
+        width: 100%;
+        object-fit: cover;
+        height: 18em;
+    }
+
+    .title{
+        font-weight: bold;
+        font-size: 1.25rem;
+    
+    }
+
+    .desc{
+        line-height: 1.5rem;
+    }
+}
+//javascript to make the nav bottom for mobile responsive   when u click on the humburger icon
+.open-nav{
+    transform: translateX(0%);
+}
+
+@media only screen and (min-width: 680px){
+
+    body{
+        margin: 1.5em 5em;
+        font-family: 'Poppins', sans-serif;
+    }
+}
+
+@media only screen and (min-width: 920px){
+    .menu {
+        display: none;
+    }
+
+    nav {
+        transform: translateX(0);
+        position: unset;
+        display: block;
+        width: auto;
+        height: auto;
+        background: none;
+
+        svg.close{
+            display: none;
+        }
+
+        ul{
+            display: flex;
+            margin: 0;
+
+            a{
+                color: white;
+                padding: .5em 1.5em;
+                font-size: .9rem;
+    
+                &:hover{
+                    background: none;
+                    text-decoration: underline;
+                }
+        }
+
+        
+        }
+
+    }
+// this is to push the main img to the right
+    .hero-img{
+        left: unset;
+        right: 0;
+        width: 50%;
+        height: 42em;
+    }
+
+    .logo{
+        color: black;
+
+        span{
+            color: red;
+        }
+    }
+
+    section.hero {
+        color: black;
+        height: auto;
+        width: 40%;
+        margin-bottom: 8em;
+        
+
+        svg.down-arrow{
+            stroke: black;
+            position: unset;
+            
+            path{
+                fill: black;
+            }
+        }
+
+    }
+
+    //pushing one of the section img to the left
+
+    .feature{
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 3em;
+        margin-bottom: 8em;
+
+        img {
+            width: 25em;
+        }
+        .content {
+            text-align: right;
+            width: 25em;
+        }
+    }
+
+    .feature.left{
+        grid-template-areas: "left right" ;
+
+        img{
+            grid-area: left;
+        }
+
+        .content{
+            text-align: left;
+            width: 25em;
+            justify-self: left;
+
+        }
+        @keyframes moveDown {
+            from{
+                transform: translateY(-100px);
+            }
+            to{
+              transform: translateY(0);
+              opacity: 3;
+        
+            }
+        }
+    }
+
+ }
+
+ @media only screen and (min-width: 1200px){ 
+     .wrapper {
+         width: 1200px;
+         margin: auto;
+     }
+
+     // to reduce the space btwn the content and img of the feature class
+     .feature{
+         gap: 0;
+     }
+
+// for the animation attributes stated above in the hero img
+@keyframes introLoad {
+    from{
+        clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
+    }
+    to{
+        clip-path: polygon(0 0%, 100% 0%, 100% 100%, 0% 100%);
+
+    }
+}
+// animation for the arrow
+@keyframes moveArrow {
+    from{
+        transform: translateY(-30px);
+    }
+    to{
+      transform: translateY(0);
+
+
+
+    }
+
+
+
+ }
+
+    // for the animation of the section hero (text)
+    @keyframes moveDown {
+        from{
+            transform: translateY(-100px);
+        }
+        to{
+          transform: translateY(0);
+          opacity: 3;
+
+          
+    
+        }
+    }
+}
+
+ 
+
+
